@@ -25,6 +25,14 @@
 
 #include <core/Backend.h>
 
+enum {
+    id_flag_extended = 0x80000000,
+    id_flag_rtr      = 0x40000000,
+    id_flag_error    = 0x20000000,
+    id_mask_extended = 0x1FFFFFFF,
+    id_mask_standard = 0x7FF
+};
+
 CanDb::CanDb()
 {
 
@@ -56,6 +64,8 @@ CanDbNode *CanDb::getOrCreateNode(QString node_name)
 
 CanDbMessage *CanDb::getMessageById(uint32_t raw_id)
 {
+    raw_id &= id_mask_extended; // Fix Ext.ID message DBC decoding
+
     if (_messages.contains(raw_id)) {
         return _messages[raw_id];
     } else {
