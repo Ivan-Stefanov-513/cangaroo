@@ -207,11 +207,11 @@ QVariant AggregatedTraceViewModel::data_TextColorRole(const QModelIndex &index, 
         struct timeval now;
         gettimeofday(&now, 0);
 
-        int color = getTimeDiff(item->_lastmsg.getTimestamp(), now)*100;
+        int color = getTimeDiff(item->_lastmsg.getTimestamp(), now)*50;
         if (color>200) { color = 200; }
         if (color<0) { color = 0; }
 
-        return QVariant::fromValue(QColor(color, color, color));
+        return QVariant::fromValue(QColor(color, 0, 0));
     } else { // CanSignal Row
         return data_TextColorRole_Signal(index, role, item->parent()->_lastmsg);
     }

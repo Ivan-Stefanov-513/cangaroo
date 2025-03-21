@@ -264,8 +264,8 @@ QVariant BaseTraceViewModel::data_TextColorRole_Signal(const QModelIndex &index,
     if (!dbsignal) { return QVariant(); }
 
     if (dbsignal->isPresentInMessage(msg)) {
-        return QVariant(); // default text color
+        return QVariant::fromValue(QColor(22,35,218)); // DBC decoded data text (data present in the last MSG)
     } else {
-        return QVariant::fromValue(QColor(200,200,200));
+        return QVariant::fromValue(QColor(200,0,200));  // DBC decoded data text (data not present in the last MSG)
     }
 }
