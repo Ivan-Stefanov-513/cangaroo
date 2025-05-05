@@ -15,7 +15,7 @@ An open source can bus analyzer with support for transmit/receive of standard an
 written by Hubert Denkmair <hubert@denkmair.de>
 
 further development by Ethan Zonca <e@ethanzonca.com>
-
+bug fix and cosmetic improvement by Ivan Stefanov <ivan.stefanov.513@gmail.com>
 
 
 ## Building on Linux
@@ -39,13 +39,37 @@ further development by Ethan Zonca <e@ethanzonca.com>
 * if you want to deploy the cangaroo app, make sure to also include the needed Qt Libraries.
   for a normal release build, these are: Qt5Core.dll Qt5Gui.dll Qt5Widgets.dll Qt5Xml.dll
 
+To build the app for Windows you need to install Qt Creator and separate you need to download/configure/build/install Qt5 from source (I used Qt5.15.2) for which you need compiler (I used MinGW32 x86) and CMake. After you build the app if you want to run it standalone you need to copy the following files in the same directory as the app:
+* libgcc_s_sjlj-1.dll
+* libstdc++-6.dll
+* libwinpthread-1.dll
+* Qt5Charts.dll
+* Qt5Core.dll
+* Qt5Gui.dll
+* Qt5Network.dll
+* Qt5SerialPort.dll
+* Qt5Svg.dll
+* Qt5Widgets.dll
+* Qt5Xml.dll
+* platforms/qwindows.dll
+* styles/qwindowsvistastyle.dll
+First 3 you can find in the compiler directory the others are found in the Qt5 installation folder. If you build the app in 32-bit you need 32-bit versions of those DLLs. You can use [Sigcheck](https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck) to check the `bitness` of a DLL or EXE. Also first 3 libraries may be different if you use another compiler(or version of) and may not contain all the needed functions inside of them which can be very confusing as they will have the same names.
+
 ## Changelog
 
-### v0.2.4 unreleased
+### v0.2.4
+* Fixed DBC decoding of Extended ID messages
+* Change decoded data text color to blue
+* Change old/inactive messages text color to red (helps to distinguish them on displays with poor colors as the old grey color was indistinguishable from black)
+
+### v0.2.3 unreleased
 * Add initial support for CANFD
 * Add support for SLCAN interfaces on Windows and Linux (CANable, CANable 2.0) including FD support
 * Add support for [CANblaster](https://github.com/normaldotcom/canblaster) socketCAN over UDP server with auto-discovery
 * Add live filtering of CAN messages in trace view
+
+### v0.2.2
+* ?
 
 ### v0.2.1
 * make logging easier
