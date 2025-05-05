@@ -53,6 +53,7 @@ To build the app for Windows you need to install Qt Creator and separate you nee
 * Qt5Xml.dll
 * platforms/qwindows.dll
 * styles/qwindowsvistastyle.dll
+
 First 3 you can find in the compiler directory the others are found in the Qt5 installation folder. If you build the app in 32-bit you need 32-bit versions of those DLLs. You can use [Sigcheck](https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck) to check the `bitness` of a DLL or EXE. Also first 3 libraries may be different if you use another compiler(or version of) and may not contain all the needed functions inside of them which can be very confusing as they will have the same names.
 
 ## Changelog
